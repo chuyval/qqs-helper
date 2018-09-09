@@ -3,7 +3,6 @@ package main
 import (
     "github.com/chuyval/qqs-helper/q2/pkg/models"
     "github.com/golang/protobuf/proto"
-    "fmt"
     "log"
 )
 
@@ -14,12 +13,13 @@ func main () {
     // Convert to string
     stuffStr := proto.MarshalTextString(stuff)
 
+    // Unmarshal string back to proto struct
     var stuff2 models.Stuff
     err := proto.UnmarshalText(stuffStr, &stuff2)
     if err != nil {
-        fmt.Println("It didnt work", err)
+        log.Printf("It didnt work. Error: %s", err.Error())
     } else {
-        fmt.Println("It worked", stuff2)
+        log.Printf("It worked. Proto: %+v", stuff2)
     }
 }
 
